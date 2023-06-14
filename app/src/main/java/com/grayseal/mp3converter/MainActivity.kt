@@ -5,14 +5,12 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.graphics.Color
+import com.grayseal.mp3converter.navigation.MP3ConverterNavigation
 import com.grayseal.mp3converter.ui.theme.MP3ConverterTheme
 import com.yausername.youtubedl_android.YoutubeDL
 
@@ -28,30 +26,19 @@ class MainActivity : ComponentActivity() {
             Log.e("ERROR", "failed to initialize youtubedl-android", e)
         }
         setContent {
-            MP3ConverterTheme {
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    Greeting("Android")
-                }
-            }
+            MP3App()
         }
     }
 }
 
 @Composable
-fun Greeting(name: String) {
-    val context = LocalContext.current
-
-    Column(modifier = Modifier.fillMaxSize()) {
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
+fun MP3App() {
     MP3ConverterTheme {
-        Greeting("Android")
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = Color.White
+        ) {
+            MP3ConverterNavigation()
+        }
     }
 }

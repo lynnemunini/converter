@@ -2,9 +2,11 @@ package com.grayseal.mp3converter.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+import com.grayseal.mp3converter.R
 
 // Set of Material typography styles to start with
 val Typography = Typography(
@@ -31,4 +33,9 @@ val Typography = Typography(
         letterSpacing = 0.5.sp
     )
     */
+)
+
+val jakartaFamily = FontFamily(
+    Font(R.font.plusjakartasans_bold, FontWeight.Bold),
+    Font(R.font.plusjakartasans_regular, FontWeight.Normal),
 )
