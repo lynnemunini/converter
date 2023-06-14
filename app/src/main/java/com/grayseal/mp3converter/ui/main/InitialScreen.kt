@@ -1,6 +1,5 @@
 package com.grayseal.mp3converter.ui.main
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -14,6 +13,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
@@ -167,7 +168,7 @@ fun Content(enabled: Boolean, url: String, onUrlChange: (String) -> Unit) {
             },
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 5.dp, bottom = 10.dp)
+                .padding(top = 5.dp)
                 .border(
                     width = 0.5.dp,
                     color = Color(0xFFD3D3D3),
@@ -182,5 +183,46 @@ fun Content(enabled: Boolean, url: String, onUrlChange: (String) -> Unit) {
                 disabledPlaceholderColor = Color.DarkGray
             )
         )
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(4.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Icon(
+                painter = painterResource(id = R.drawable.info),
+                contentDescription = "info icon",
+                tint = Color.Gray,
+                modifier = Modifier.size(19.dp)
+            )
+            Text(
+                text = "Where you want to save the MP3",
+                fontSize = 13.sp,
+                fontWeight = FontWeight.Normal,
+                fontFamily = jakartaFamily,
+                color = Color.Gray
+            )
+        }
+
+        Button(
+            onClick = { /*TODO*/ },
+            shape = RoundedCornerShape(size = 8.dp),
+            elevation = ButtonDefaults.buttonElevation(2.dp),
+            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF892EFF)),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 20.dp)
+        ) {
+            Text(
+                text = "Download",
+                fontFamily = jakartaFamily,
+                fontWeight = FontWeight.Bold,
+                fontSize = 16.sp,
+                color = Color.White,
+                modifier = Modifier
+                    .padding(vertical = 7.dp)
+            )
+        }
     }
 }
