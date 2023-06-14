@@ -1,6 +1,9 @@
 package com.grayseal.mp3converter.ui.main
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -28,6 +31,7 @@ import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -76,7 +80,7 @@ fun Content(enabled: Boolean, url: String, onUrlChange: (String) -> Unit) {
         }
         Text(
             text = "Youtube Link",
-            fontSize = 14.sp,
+            fontSize = 15.sp,
             fontWeight = FontWeight.Black,
             fontFamily = jakartaFamily
         )
@@ -86,10 +90,21 @@ fun Content(enabled: Boolean, url: String, onUrlChange: (String) -> Unit) {
                 Icon(
                     painter = painterResource(id = R.drawable.outline_insert_link_24),
                     contentDescription = "Link Icon",
-                    modifier = Modifier.rotate(45F)
+                    modifier = Modifier.rotate(135F)
                 )
             },
-            shape = RoundedCornerShape(),
+            textStyle = TextStyle(
+                fontSize = 15.sp,
+                fontWeight = FontWeight.Bold,
+                fontFamily = jakartaFamily
+            ),
+            trailingIcon = {
+                Icon(
+                    painter = painterResource(id = R.drawable.close),
+                    contentDescription = "Close Icon"
+                )
+            },
+            shape = RoundedCornerShape(size = 8.dp),
             singleLine = true,
             enabled = enabled,
             keyboardOptions = KeyboardOptions(
@@ -101,16 +116,70 @@ fun Content(enabled: Boolean, url: String, onUrlChange: (String) -> Unit) {
             },
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(bottom = 10.dp),
+                .padding(top = 5.dp, bottom = 10.dp)
+                .border(
+                    width = 0.5.dp,
+                    color = Color(0xFFD3D3D3),
+                    shape = RoundedCornerShape(size = 8.dp)
+                )
+                .background(color = Color(0xFFFAFAFA), shape = RoundedCornerShape(size = 8.dp)),
             onValueChange = onUrlChange,
             placeholder = { Text(text = "Enter youtube URL", fontFamily = jakartaFamily) },
             colors = TextFieldDefaults.outlinedTextFieldColors(
-                focusedBorderColor = Color.LightGray,
-                unfocusedBorderColor = Color.LightGray,
-                focusedLeadingIconColor = Color.Black,
-                unfocusedLeadingIconColor = Color.Black,
-                placeholderColor = Color.LightGray,
-                cursorColor = Color.LightGray
+                textColor = Color.Black,
+                focusedLeadingIconColor = Color.DarkGray,
+                unfocusedLeadingIconColor = Color.DarkGray,
+                focusedTrailingIconColor = Color.Gray,
+                unfocusedTrailingIconColor = Color.Gray,
+                focusedBorderColor = Color(0xFFD3D3D3),
+                cursorColor = Color.DarkGray,
+                placeholderColor = Color.DarkGray,
+            )
+        )
+        Text(
+            text = "Destination Folder",
+            fontSize = 15.sp,
+            fontWeight = FontWeight.Black,
+            fontFamily = jakartaFamily
+        )
+        OutlinedTextField(
+            value = url,
+            leadingIcon = {
+                Icon(
+                    painter = painterResource(id = R.drawable.outline_folder),
+                    contentDescription = "Folder Icon"
+                )
+            },
+            textStyle = TextStyle(
+                fontSize = 15.sp,
+                fontWeight = FontWeight.Bold,
+                fontFamily = jakartaFamily
+            ),
+            shape = RoundedCornerShape(size = 8.dp),
+            singleLine = true,
+            enabled = false,
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Text,
+                imeAction = ImeAction.Done
+            ),
+            keyboardActions = KeyboardActions {
+                keyboardController?.hide()
+            },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 5.dp, bottom = 10.dp)
+                .border(
+                    width = 0.5.dp,
+                    color = Color(0xFFD3D3D3),
+                    shape = RoundedCornerShape(size = 8.dp)
+                )
+                .background(color = Color(0xFFFAFAFA), shape = RoundedCornerShape(size = 8.dp)),
+            onValueChange = onUrlChange,
+            placeholder = { Text(text = "Select Folder", fontFamily = jakartaFamily) },
+            colors = TextFieldDefaults.outlinedTextFieldColors(
+                disabledTextColor = Color.Black,
+                disabledLeadingIconColor = Color.DarkGray,
+                disabledPlaceholderColor = Color.DarkGray
             )
         )
     }
